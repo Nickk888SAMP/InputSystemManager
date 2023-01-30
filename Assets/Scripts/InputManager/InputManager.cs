@@ -12,10 +12,10 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance { get { return instance; } }
 
     [SerializeField] private InputActionAsset inputActionAsset;
-    [SerializeField] private InputActionReferenceSO[] inputReferences;
-    [SerializeField] private Dictionary<InputActionReferenceSO, InputAction> inputActions = new Dictionary<InputActionReferenceSO, InputAction>();
+    [SerializeField] private InputActionReference[] inputReferences;
+    [SerializeField] private Dictionary<InputActionReference, InputAction> inputActions = new Dictionary<InputActionReference, InputAction>();
 
-    public InputActionReferenceSO[] InputReferences { get { return inputReferences; } }
+    public InputActionReference[] InputReferences { get { return inputReferences; } }
 
     #region Callbacks
 
@@ -46,7 +46,8 @@ public class InputManager : MonoBehaviour
 
     #region Public Methods
 
-    public bool GetInputActionValue(InputActionReferenceSO reference, out Vector2 value)
+    
+    public bool GetInputActionValue(InputActionReference reference, out Vector2 value)
     {
         if(GetAction(reference, out InputAction inputAction))
         {
@@ -56,8 +57,32 @@ public class InputManager : MonoBehaviour
         value = Vector2.zero;
         return false;
     }
+    public bool GetInputActionValue(string inputActionName, out Vector2 value)
+    {
+        return GetInputActionValue(GetInputReferenceByName(inputActionName), out value);
+    }
 
-    public InputAction GetInputAction(InputActionReferenceSO reference)
+    public bool GetInputActionValue(InputActionReference reference, InputActionState inputActionState)
+    {
+        if(GetAction(reference, out InputAction inputAction))
+        {
+            switch(inputActionState)
+            {
+                case InputActionState.WasPerformedThisFrame: return inputAction.WasPerformedThisFrame();
+                case InputActionState.WasPressedThisFrame: return inputAction.WasPressedThisFrame();
+                case InputActionState.WasReleasedThisFrame: return inputAction.WasReleasedThisFrame();
+                case InputActionState.IsPressed: return inputAction.IsPressed();
+                default: return inputAction.WasPerformedThisFrame();
+            }
+        }
+        return inputAction.WasPerformedThisFrame();
+    }
+    public bool GetInputActionValue(string inputActionName, InputActionState inputActionState)
+    {
+        return GetInputActionValue(GetInputReferenceByName(inputActionName), inputActionState);
+    }
+
+    public InputAction GetInputAction(InputActionReference reference)
     {
         GetAction(reference, out InputAction inputAction);
         return inputAction;
@@ -84,7 +109,7 @@ public class InputManager : MonoBehaviour
         inputAction.Enable();
     }
     
-    private InputActionReferenceSO GetInputReferenceByName(string inputActionName)
+    private InputActionReference GetInputReferenceByName(string inputActionName)
     {
         return inputActions.Where(x => x.Key.inputActionName == inputActionName).Select(x => x.Key).FirstOrDefault();
     }
@@ -94,7 +119,7 @@ public class InputManager : MonoBehaviour
         return inputActions.Where(x => x.Key.inputActionName == inputActionName).Select(x => x.Value).FirstOrDefault();
     }
     
-    private bool GetAction(InputActionReferenceSO reference, out InputAction inputAction)
+    private bool GetAction(InputActionReference reference, out InputAction inputAction)
     {
         if(inputActions.TryGetValue(reference, out InputAction action))
         {

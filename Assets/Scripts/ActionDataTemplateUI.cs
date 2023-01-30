@@ -7,7 +7,7 @@ public class ActionDataTemplateUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI text;
 
-    public void SetText(InputActionReferenceSO actionReferenceSO, string value)
+    public void SetText(InputActionReference actionReferenceSO, string value)
     {
         this.text.text = actionReferenceSO.inputActionName + " action value: " + value;
     }

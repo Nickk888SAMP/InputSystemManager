@@ -12,7 +12,7 @@ public class InputManagerTest : MonoBehaviour
     {
         if(InputManager.Instance != null)
         {
-            foreach(InputActionReferenceSO actionReferenceSO in InputManager.Instance.InputReferences)
+            foreach(InputActionReference actionReferenceSO in InputManager.Instance.InputReferences)
             {
                 var go = Instantiate(actionDataTemplateUIPrefab, actionDataGridTransform);
                 if(go.TryGetComponent<ActionDataTemplateUI>(out ActionDataTemplateUI actionDataTemplateUI))
@@ -32,13 +32,13 @@ public class InputManagerTest : MonoBehaviour
             var template = actionDataTemplates[i];
             switch(inputRef.inputActionType)
             {
-                case InputActionReferenceSO.InputActionType.Button:
+                case InputActionReference.InputActionType.Button:
                 {
                     string buttonString = $"<color=red>Is Pressed: <color=green>{action.IsPressed()}</color>";
                     template.SetText(inputRef, buttonString);
                     break;
                 }
-                case InputActionReferenceSO.InputActionType.Vector2:
+                case InputActionReference.InputActionType.Vector2:
                 {
                     string vector2String = $"<color=green>{action.ReadValue<Vector2>().ToString()}</color>";
                     template.SetText(inputRef, vector2String);

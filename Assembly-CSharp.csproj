@@ -37,10 +37,11 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ActionDataTemplateUI.cs" />
-     <Compile Include="Assets\Scripts\InputManager\InputActionReferenceSO.cs" />
+     <Compile Include="Assets\Scripts\InputManagerCameraControllerTest.cs" />
+     <Compile Include="Assets\Scripts\InputManager\InputActionReference.cs" />
      <Compile Include="Assets\Scripts\InputManager\InputManager.cs" />
      <Compile Include="Assets\Scripts\InputManagerTest.cs" />
-     <Compile Include="Assets\Scripts\InputManagerCameraControllerTest.cs" />
+     <Compile Include="Assets\Scripts\InputActionState.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
