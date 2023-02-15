@@ -322,9 +322,9 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/NetStandard/ref/2.1.0/netstandard.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/PlaybackEngines/AndroidPlayer/Unity.Android.Gradle.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/PlaybackEngines/AndroidPlayer/Unity.Android.Types.dll"
--r:"E:/Dokumente HD1/Unity Games/InputSystemManager/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/Newtonsoft.Json.dll"
--r:"E:/Dokumente HD1/Unity Games/InputSystemManager/Library/PackageCache/com.unity.testtools.codecoverage@1.0.1/lib/ReportGenerator/ReportGeneratorMerged.dll"
--r:"E:/Dokumente HD1/Unity Games/InputSystemManager/Library/PackageCache/com.unity.visualscripting@1.7.8/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"F:/Unity Projects/InputSystemManager/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/Newtonsoft.Json.dll"
+-r:"F:/Unity Projects/InputSystemManager/Library/PackageCache/com.unity.testtools.codecoverage@1.0.1/lib/ReportGenerator/ReportGeneratorMerged.dll"
+-r:"F:/Unity Projects/InputSystemManager/Library/PackageCache/com.unity.visualscripting@1.7.8/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.EditorCoroutines.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.InputSystem.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Performance.Profile-Analyzer.Editor.ref.dll"
@@ -353,11 +353,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/ActionDataTemplateUI.cs"
-"Assets/Scripts/InputActionState.cs"
 "Assets/Scripts/InputManager/InputActionReference.cs"
+"Assets/Scripts/InputManager/InputActionState.cs"
 "Assets/Scripts/InputManager/InputManager.cs"
 "Assets/Scripts/InputManagerCameraControllerTest.cs"
 "Assets/Scripts/InputManagerTest.cs"
+"Assets/Scripts/WeaponSway.cs"
 -langversion:9.0
 
 /deterministic

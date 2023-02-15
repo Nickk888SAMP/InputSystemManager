@@ -36,12 +36,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\WeaponSway.cs" />
      <Compile Include="Assets\Scripts\ActionDataTemplateUI.cs" />
+     <Compile Include="Assets\Scripts\InputManager\InputActionState.cs" />
      <Compile Include="Assets\Scripts\InputManagerCameraControllerTest.cs" />
      <Compile Include="Assets\Scripts\InputManager\InputActionReference.cs" />
      <Compile Include="Assets\Scripts\InputManager\InputManager.cs" />
      <Compile Include="Assets\Scripts\InputManagerTest.cs" />
-     <Compile Include="Assets\Scripts\InputActionState.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -307,13 +308,13 @@
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="ReportGeneratorMerged">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\PackageCache\com.unity.testtools.codecoverage@1.0.1\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\PackageCache\com.unity.testtools.codecoverage@1.0.1\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.4f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -688,85 +689,85 @@
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.4f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Analytics">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Environments">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
-        <HintPath>E:\Dokumente HD1\Unity Games\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
+        <HintPath>F:\Unity Projects\InputSystemManager\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
