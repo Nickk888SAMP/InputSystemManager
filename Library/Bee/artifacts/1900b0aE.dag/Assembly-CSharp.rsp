@@ -352,13 +352,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/Scripts/ActionDataTemplateUI.cs"
-"Assets/Scripts/BindingButtonUI.cs"
-"Assets/Scripts/InputManager/InputActionReference.cs"
-"Assets/Scripts/InputManager/InputActionState.cs"
-"Assets/Scripts/InputManager/InputManager.cs"
-"Assets/Scripts/InputManagerReferencesCameraControllerTest.cs"
-"Assets/Scripts/InputManagerTest.cs"
+"Assets/Nickk888/Scripts/Example/InputManagerCameraControllerExample.cs"
+"Assets/Nickk888/Scripts/Example/InputManagerExample.cs"
+"Assets/Nickk888/Scripts/InputManager/InputManager.cs"
+"Assets/Nickk888/Scripts/ScriptableObjects/InputActionReference.cs"
+"Assets/Nickk888/Scripts/UI/ActionDataTemplateUI.cs"
+"Assets/Nickk888/Scripts/UI/BindingButtonUI.cs"
 -langversion:9.0
 
 /deterministic
