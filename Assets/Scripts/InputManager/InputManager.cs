@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,36 +8,89 @@ public class InputManager : MonoBehaviour
 {
     private static InputManager instance = null;
     public static InputManager Instance { get { return instance; } }
+    public InputActionReference[] InputReferences { get { return inputReferences; } }
+
+    public event EventHandler<OnBindingRebindEventArgs> OnBindingRebind;
+    public event EventHandler<OnBindingRebindStartEventArgs> OnBindingRebindStart;
+    public event EventHandler<OnBindingRebindCancelledEventArgs> OnBindingRebindCancelled;
+
+    public class OnBindingRebindEventArgs : EventArgs 
+    {
+        public InputAction inputAction;
+        public InputActionReference inputActionReference;
+        public int bindingIndex;
+    }
+
+    public class OnBindingRebindStartEventArgs : EventArgs 
+    {
+        public InputAction inputAction;
+        public InputActionReference inputActionReference;
+        public int bindingIndex;
+    }
+
+    public class OnBindingRebindCancelledEventArgs : EventArgs 
+    {
+        public InputAction inputAction;
+        public InputActionReference inputActionReference;
+        public int bindingIndex;
+    }
 
     [SerializeField] private InputActionAsset inputActionAsset;
+    [SerializeField] private string bindingsPlayerPrefsKey = "InputBindings";
     [SerializeField] private InputActionReference[] inputReferences;
-    [SerializeField] private Dictionary<InputActionReference, InputAction> inputActions = new Dictionary<InputActionReference, InputAction>();
-
-    public InputActionReference[] InputReferences { get { return inputReferences; } }
+    
+    private Dictionary<InputActionReference, InputAction> inputActions = new Dictionary<InputActionReference, InputAction>();
+    private Dictionary<string, InputAction> inputActionStrings = new Dictionary<string, InputAction>();
+    private Dictionary<string, InputActionReference> inputActionReferenceStrings = new Dictionary<string, InputActionReference>();
 
     #region Callbacks
 
     private void Awake() 
     {
-        if(instance == null)
-        {
+        if(instance == null) {
             instance = this;
         }
-        else
-        {
+        else {
             Destroy(gameObject);
         }
 
-        foreach(var reference in inputReferences)
+        // Load bindings from PlayerPrefs
+        if(PlayerPrefs.HasKey(bindingsPlayerPrefsKey))
         {
-            InitializeAction(reference.inputActionName, out InputAction action);
-            inputActions.Add(reference, action);
+            inputActionAsset.LoadBindingOverridesFromJson(PlayerPrefs.GetString(bindingsPlayerPrefsKey));
+        }
+
+        // Load all references
+        foreach(InputActionReference reference in inputReferences)
+        {
+            AddInputActionReference(reference);
         }
     }
 
     #endregion
 
     #region Public Methods
+
+    /// <summary>
+    /// Tries to add a Input Action Reference to the InputManager.
+    /// Returns "false" if the Reference has been already added or Input Action has not been found in the Input Action Asset.
+    /// </summary>
+    /// <param name="inputActionReference"></param>
+    /// <returns></returns>
+    public bool AddInputActionReference(InputActionReference inputActionReference)
+    {
+        if(inputActions.ContainsKey(inputActionReference))
+            return false;
+
+        InitializeAction(inputActionReference.inputActionName, out InputAction inputAction);
+        if(inputAction is null)
+            return false;
+
+        inputActions.Add(inputActionReference, inputAction);
+        inputActionReferenceStrings.Add(inputActionReference.inputActionName.ToLower(), inputActionReference);
+        inputActionStrings.Add(inputActionReference.inputActionName.ToLower(), inputAction);
+        return true;
+    }
 
     /// <summary>
     /// Returns a Vector2 value in the Out parameter providing the reference of the InputAction.
@@ -106,6 +157,18 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Get InputActionReference by providing the InputAction
+    /// Will return "null" if the InputActionReference wasn't found.
+    /// </summary>
+    /// <param name="action"></param>
+    /// <returns></returns>
+    public InputActionReference GetInputReference(InputAction action)
+    {
+        GetActionReference(action, out InputActionReference inputActionReference);
+        return inputActionReference;
+    }
+
+    /// <summary>
     /// Returns the InputAction by providing the reference of the InputAction.
     /// Will return "null" if the InputAction wasn't found.
     /// </summary>
@@ -138,6 +201,88 @@ public class InputManager : MonoBehaviour
         return InputSystem.GetDevice<Mouse>().position.ReadValue();
     }
 
+    /// <summary>
+    /// Performs a rebind process for the given Input Action and the Index if the binding.
+    /// </summary>
+    /// <param name="inputActionReference"></param>
+    /// <param name="bindingIndex"></param>
+    public void PerformInputActionRebind(InputActionReference inputActionReference, int bindingIndex)
+    {
+        PerformInputActionRebind(GetInputAction(inputActionReference), bindingIndex);
+    }
+
+    /// <summary>
+    /// Performs a rebind process for the given Input Action and the Index if the binding.
+    /// </summary>
+    /// <param name="inputAction"></param>
+    /// <param name="bindingIndex">The Binding Index is the index of the Actions Array in the Input Action Asset</param>
+    public void PerformInputActionRebind(InputAction inputAction, int bindingIndex)
+    {
+        var inputActionReference = GetInputReference(inputAction);
+
+        foreach(var map in inputActionAsset.actionMaps) {
+            map.Disable();
+        }
+        inputAction.PerformInteractiveRebinding(bindingIndex)
+
+        // On Complete
+        .OnComplete(callback => 
+        {
+            callback.Dispose();
+            foreach(var map in inputActionAsset.actionMaps) {
+                map.Enable();
+            }
+            OnBindingRebind?.Invoke(this, new OnBindingRebindEventArgs { inputAction = inputAction, inputActionReference =inputActionReference, bindingIndex = bindingIndex });
+
+            PlayerPrefs.SetString(bindingsPlayerPrefsKey, inputActionAsset.SaveBindingOverridesAsJson());
+            PlayerPrefs.Save();
+        })
+
+        // On Cancel
+        .OnCancel(callback => 
+        {
+            callback.Dispose();
+            OnBindingRebindCancelled?.Invoke(this, new OnBindingRebindCancelledEventArgs { inputAction = inputAction, inputActionReference = inputActionReference, bindingIndex = bindingIndex });
+        })
+
+        // Start
+        .Start();
+        OnBindingRebindStart?.Invoke(this, new OnBindingRebindStartEventArgs { inputAction = inputAction, inputActionReference = inputActionReference, bindingIndex = bindingIndex });
+    }
+
+    /// <summary>
+    /// Returns the Display String of the Input Action's Binding. For short: It's the name of the Button like "E" or "Shift".
+    /// </summary>
+    /// <param name="inputAction"></param>
+    /// <param name="bindingIndex"></param>
+    /// <returns></returns>
+    public string GetBindingDisplayString(InputAction inputAction, int bindingIndex)
+    {
+        return inputAction.bindings[bindingIndex].ToDisplayString();
+    }
+
+    /// <summary>
+    /// Returns the Display String of the Input Action's Binding. For short: It's the name of the Button like "E" or "Shift".
+    /// </summary>
+    /// <param name="inputActionReference"></param>
+    /// <param name="bindingIndex"></param>
+    /// <returns></returns>
+    public string GetBindingDisplayString(InputActionReference inputActionReference, int bindingIndex)
+    {
+        return GetBindingDisplayString(GetInputAction(inputActionReference), bindingIndex);
+    }
+
+    /// <summary>
+    /// Returns the Display String of the Input Action's Binding. For short: It's the name of the Button like "E" or "Shift".
+    /// </summary>
+    /// <param name="inputActionName"></param>
+    /// <param name="bindingIndex"></param>
+    /// <returns></returns>
+    public string GetBindingDisplayString(string inputActionName, int bindingIndex)
+    {
+        return GetBindingDisplayString(GetInputAction(inputActionName), bindingIndex);
+    }
+
     #endregion
 
     #region Local Methods
@@ -161,7 +306,8 @@ public class InputManager : MonoBehaviour
     /// <returns></returns>
     private InputActionReference GetInputReferenceByName(string inputActionName)
     {
-        return inputActions.Where(x => x.Key.inputActionName == inputActionName).Select(x => x.Key).FirstOrDefault();
+        inputActionReferenceStrings.TryGetValue(inputActionName.ToLower(), out InputActionReference actionReference);
+        return actionReference;
     }
 
     /// <summary>
@@ -172,7 +318,8 @@ public class InputManager : MonoBehaviour
     /// <returns></returns>
     private InputAction GetInputActionByName(string inputActionName)
     {
-        return inputActions.Where(x => x.Key.inputActionName == inputActionName).Select(x => x.Value).FirstOrDefault();
+        inputActionStrings.TryGetValue(inputActionName.ToLower(), out InputAction action);
+        return action;
     }
     
     /// <summary>
@@ -191,6 +338,13 @@ public class InputManager : MonoBehaviour
         }
         inputAction = null;
         return false;
+    }
+
+    private bool GetActionReference(InputAction action, out InputActionReference inputActionReference)
+    {
+        var key = inputActions.FirstOrDefault(x => x.Value == action).Key;
+        inputActionReference = key;
+        return key is not null;
     }
 
 

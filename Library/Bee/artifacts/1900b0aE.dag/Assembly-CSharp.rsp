@@ -353,12 +353,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/ActionDataTemplateUI.cs"
+"Assets/Scripts/BindingButtonUI.cs"
 "Assets/Scripts/InputManager/InputActionReference.cs"
 "Assets/Scripts/InputManager/InputActionState.cs"
 "Assets/Scripts/InputManager/InputManager.cs"
-"Assets/Scripts/InputManagerCameraControllerTest.cs"
+"Assets/Scripts/InputManagerReferencesCameraControllerTest.cs"
 "Assets/Scripts/InputManagerTest.cs"
-"Assets/Scripts/WeaponSway.cs"
 -langversion:9.0
 
 /deterministic
