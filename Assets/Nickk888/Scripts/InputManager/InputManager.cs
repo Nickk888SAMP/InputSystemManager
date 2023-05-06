@@ -36,11 +36,17 @@ public class InputManager : MonoBehaviour
         public int bindingIndex;
     }
 
+    [Header("Input Action Asset"), Tooltip("The Input Action Asset with the actions that the references will be referenced.")]
     [SerializeField] private InputActionAsset inputActionAsset;
+
+    [Header("Bindings Save/Load"), Tooltip("The name of the Key in the PlayerPrefs for the Input Bindings Save and Load")]
     [SerializeField] private string bindingsPlayerPrefsKey = "InputBindings";
+
+    [Header("Input Action References"), Tooltip("The Input Action References that will be initialized on load to be accessable during gameplay.")]
     [SerializeField] private InputActionReference[] inputReferences;
     
     private Dictionary<InputActionReference, InputAction> inputActions = new Dictionary<InputActionReference, InputAction>();
+    private Dictionary<InputAction, InputActionReference> inputActionReferences = new Dictionary<InputAction, InputActionReference>();
     private Dictionary<string, InputAction> inputActionStrings = new Dictionary<string, InputAction>();
     private Dictionary<string, InputActionReference> inputActionReferenceStrings = new Dictionary<string, InputActionReference>();
 
@@ -88,6 +94,7 @@ public class InputManager : MonoBehaviour
             return false;
 
         inputActions.Add(inputActionReference, inputAction);
+        inputActionReferences.Add(inputAction, inputActionReference);
         inputActionReferenceStrings.Add(inputActionReference.inputActionName.ToLower(), inputActionReference);
         inputActionStrings.Add(inputActionReference.inputActionName.ToLower(), inputAction);
         return true;
@@ -332,20 +339,19 @@ public class InputManager : MonoBehaviour
     /// <returns></returns>
     private bool GetAction(InputActionReference reference, out InputAction inputAction)
     {
-        if(inputActions.TryGetValue(reference, out InputAction action))
-        {
-            inputAction = action;
-            return true;
-        }
-        inputAction = null;
-        return false;
+        return inputActions.TryGetValue(reference, out inputAction);
     }
 
+    /// <summary>
+    /// Returns the InputActionReference in the "out" parameter by providing the action.
+    /// Will return "null" if the action wasn't found.
+    /// </summary>
+    /// <param name="action"></param>
+    /// <param name="inputActionReference"></param>
+    /// <returns></returns>
     private bool GetActionReference(InputAction action, out InputActionReference inputActionReference)
     {
-        var key = inputActions.FirstOrDefault(x => x.Value == action).Key;
-        inputActionReference = key;
-        return key is not null;
+        return inputActionReferences.TryGetValue(action, out inputActionReference);
     }
 
 
