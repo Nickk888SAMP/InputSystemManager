@@ -2,6 +2,13 @@
 
 This asset for Unity is a powerful Input System Manager that allows you to easily retrieve data from the Input System using Scriptable Objects as references to Input Actions. With this Singleton-based solution, you'll be able to speed up the process of game development and create a more intuitive user experience for your players. 
 
+## Features
+* Singleton/Instance based script for easy global access.
+* Plug'n'Play, just add your Input Action Asset and references to the Manager and start reading inputs!
+* Key rebinding support.
+* 3 methods to read inputs: Scriptable Objects, Input Actions and Strings!
+* Simple one-line code to read any inputs.
+
 ## Installation
 1. Download the asset and import to your Project.
 2. Create a new `Empty Game Object` and add the `InputManager.cs` component to it.
