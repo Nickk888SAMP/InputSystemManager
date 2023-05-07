@@ -6,7 +6,7 @@ This asset for Unity is a powerful Input System Manager that allows you to easil
 * Singleton/Instance based script for easy global access.
 * Plug'n'Play, just add your Input Action Asset and references to the Manager and start reading inputs!
 * Key rebinding support.
-* 3 methods to read inputs: Scriptable Objects, Input Actions and Strings!
+* 2 methods to read inputs: Scriptable Objects and Strings!
 * Simple one-line code to read any inputs.
 * Perfect for Single-Player and Networked Multiplayer.
 
