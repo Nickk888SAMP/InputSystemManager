@@ -8,7 +8,11 @@ This asset for Unity is a powerful Input System Manager that allows you to easil
 * Key rebinding support.
 * 3 methods to read inputs: Scriptable Objects, Input Actions and Strings!
 * Simple one-line code to read any inputs.
-* Perfect for Single-Player and Networked Multiplayer (Local Multiplayer/Split-Screen not Supported)
+* Perfect for Single-Player and Networked Multiplayer.
+
+## Limitations
+* Local Multiplayer/Split-Screen is not supported.
+* Only one Action Map is supported.
 
 ## Installation
 1. Download the asset and import to your Project.
