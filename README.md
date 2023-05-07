@@ -24,7 +24,7 @@ This asset for Unity is a powerful Input System Manager that allows you to easil
 7. That's all. Now you can retrieve data from the actions by calling code from the InputManager's Instance.
 
 ## How to Use
-You can retrieve data from the Input System Manager by using one of the 3 types as a reference.
+You can retrieve data from the Input System Manager by using one of the 2 types as a reference.
 ### By Input Action References
 ```csharp
 public InputActionReference moveActionReference; // Vector2
@@ -36,28 +36,6 @@ private void Update() {
     }
 
     if(InputManager.Instance.GetInputActionValue(shootActionReference, InputActionState.WasPressedThisFrame)) {
-        // Shooting Code
-    }
-}
-```
-### By Input Actions
-```csharp
-using UnityEngine.InputSystem;
-
-private void Update() {
-    InputAction movementAction = InputManager.Instance.GetInputAction("Movement");
-    InputAction fireAction = InputManager.Instance.GetInputAction("Fire");
-    
-    /* Alternatively by providing Input Action References, but then you could just use the Input Action References itself...
-    InputAction movementAction = InputManager.Instance.GetInputAction(moveActionReference);
-    InputAction fireAction = InputManager.Instance.GetInputAction(shootActionReference);
-    */
-    
-    if(InputManager.Instance.GetInputActionValue(movementAction, out Vector2 moveInputValue)) {
-        // Movement Code
-    }
-
-    if(InputManager.Instance.GetInputActionValue(fireAction, InputActionState.WasPressedThisFrame)) {
         // Shooting Code
     }
 }
