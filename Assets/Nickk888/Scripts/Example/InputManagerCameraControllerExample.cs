@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManagerCameraControllerExample : MonoBehaviour 
 {
@@ -18,6 +19,9 @@ public class InputManagerCameraControllerExample : MonoBehaviour
 
     private void Update() 
     {
+        InputAction movementAction = InputManager.Instance.GetInputAction("Movement");
+        InputAction fireAction = InputManager.Instance.GetInputAction("Fire");
+
         bool isSprinting = InputManager.Instance.GetInputActionValue(sprintActionReference, InputActionState.IsPressed);
         bool isAiming = InputManager.Instance.GetInputActionValue(aimActionReference, InputActionState.IsPressed);
         bool isShooting = InputManager.Instance.GetInputActionValue(shootActionReference, InputActionState.WasPressedThisFrame);
