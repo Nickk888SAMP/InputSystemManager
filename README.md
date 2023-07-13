@@ -2,6 +2,18 @@
 
 This asset for Unity is a powerful Input System Manager that allows you to easily retrieve data from the Input System using Scriptable Objects as references to Input Actions. With this Singleton-based solution, you'll be able to speed up the process of game development and create a more intuitive user experience for your players. 
 
+## Features
+* Singleton/Instance based script for easy global access.
+* Plug'n'Play, just add your Input Action Asset and references to the Manager and start reading inputs!
+* Key rebinding support.
+* 2 methods to read inputs: Scriptable Objects and Strings!
+* Simple one-line code to read any inputs.
+* Perfect for Single-Player and Networked Multiplayer.
+
+## Limitations
+* Local Multiplayer/Split-Screen is not supported.
+* Only one Action Map is supported.
+
 ## Installation
 1. Download the asset and import to your Project.
 2. Create a new `Empty Game Object` and add the `InputManager.cs` component to it.
@@ -12,7 +24,7 @@ This asset for Unity is a powerful Input System Manager that allows you to easil
 7. That's all. Now you can retrieve data from the actions by calling code from the InputManager's Instance.
 
 ## How to Use
-You can retrieve data from the Input System Manager by using one of the 3 types as a reference.
+You can retrieve data from the Input System Manager by using one of the 2 types as a reference.
 ### By Input Action References
 ```csharp
 public InputActionReference moveActionReference; // Vector2
@@ -24,28 +36,6 @@ private void Update() {
     }
 
     if(InputManager.Instance.GetInputActionValue(shootActionReference, InputActionState.WasPressedThisFrame)) {
-        // Shooting Code
-    }
-}
-```
-### By Input Actions
-```csharp
-using UnityEngine.InputSystem;
-
-private void Update() {
-    InputAction movementAction = InputManager.Instance.GetInputAction("Movement");
-    InputAction fireAction = InputManager.Instance.GetInputAction("Fire");
-    
-    /* Alternatively by providing Input Action References, but then you could just use the Input Action References itself...
-    InputAction movementAction = InputManager.Instance.GetInputAction(moveActionReference);
-    InputAction fireAction = InputManager.Instance.GetInputAction(shootActionReference);
-    */
-    
-    if(InputManager.Instance.GetInputActionValue(movementAction, out Vector2 moveInputValue)) {
-        // Movement Code
-    }
-
-    if(InputManager.Instance.GetInputActionValue(fireAction, InputActionState.WasPressedThisFrame)) {
         // Shooting Code
     }
 }
